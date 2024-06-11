@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="fr">
+  {% block content %}
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
+
+  <style>
+    .reservation-event {
+      background-color: #7FFF00; /* Couleur verte pour les réservations */
+      border-color: #7FFF00;
+      color: #000000;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="calendar" data-idformateur="{{ formateur['IdFormateur'] }}"></div>
+  <script src="{{ url_for('static', filename='planning_prof.js') }}"></script>
+  <script>
+    document.getElementById("deconnexionBtn").addEventListener("click", function () {
+        // Supprimer la session
+        sessionStorage.removeItem('IdCompteEleve');
+        // Rediriger vers index.html
+        window.location.href = "/";
+    });
+  </script>
+</body>
+{% endblock %}
+</html>

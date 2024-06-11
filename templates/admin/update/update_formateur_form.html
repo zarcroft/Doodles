@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de mise à jour d'un formateur</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Formulaire de mise à jour d'un formateur</h1>
+                <a href="/admin"><button class="btn-deconnexion">Retour</button></a>
+            </div>
+        </div>
+        <div class="form-container">
+            <h2>Mettre à jour les informations du formateur :</h2>
+            <form action="{{ url_for('update_formateur_post') }}" method="POST">
+                <input type="hidden" name="formateur_id" value="{{ formateur['IdFormateur'] }}">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" value="{{ formateur['Nom'] }}" required>
+                
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" value="{{ formateur['Prenom'] }}" required>
+                
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" value="{{ formateur['Email'] }}" required>
+                
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone" value="{{ formateur['Telephone'] }}" required>
+                
+                <input type="submit" value="Enregistrer les modifications">
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

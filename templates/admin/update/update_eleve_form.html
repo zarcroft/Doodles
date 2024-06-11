@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de mise à jour d'un élève</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Formulaire de mise à jour d'un élève</h1>
+                <a href="/admin"><button class="btn-deconnexion">Retour</button></a>
+            </div>
+        </div>
+        <div class="form-container">
+            <h2>Mettre à jour les informations de l'élève :</h2>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="{{ url_for('update_eleve_post') }}" method="POST">
+                <input type="hidden" name="eleve_id" value="{{ eleve['IdEleve'] }}">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" value="{{ eleve['Nom'] }}" required>
+                
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="prenom" name="prenom" value="{{ eleve['Prenom'] }}" required>
+                
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" value="{{ eleve['Email'] }}" required>
+                
+                <label for="telephone">Téléphone :</label>
+                <input type="tel" id="telephone" name="telephone" value="{{ eleve['Telephone'] }}" required>
+                
+                <label for="id_classe">Classe :</label>
+                <select id="id_classe" name="id_classe" required>
+                    {% for classe in classes %}
+                        <option value="{{ classe['IDClasse'] }}" {% if classe['IDClasse'] == eleve['IDClasse'] %} selected {% endif %}>{{ classe['Classe'] }}</option>
+                    {% endfor %}
+                </select>
+                
+                <input type="submit" value="Enregistrer les modifications">
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

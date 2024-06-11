@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Déclaration de l'encodage des caractères -->
+    <meta charset="utf-8" />
+    <!-- Inclusion de la feuille de style CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- Inclusion de la feuille de style jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Inclusion de jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Inclusion du script de localisation FullCalendar en français -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/locales/fr.min.js"></script>
+    <!-- Inclusion de jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Inclusion de Moment.js -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <!-- Inclusion de FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <!-- Inclusion de la feuille de style CSS locale -->
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<!-- Extension du modèle de base -->
+{% extends 'base.html' %}
+
+<!-- Début du contenu spécifique à cette page -->
+{% block content %}
+
+<body>
+    <!-- Conteneur pour le calendrier avec l'ID du formateur -->
+    <div id="calendar" data-idformateur="{{ formateur['IdFormateur'] }}"></div>
+
+    <!-- Section pour la liste des disponibilités -->
+    <div id="listeDisponibilites">
+        <h3>Liste des disponibilités</h3>
+        <ul id="disponibilites"></ul>
+    </div>
+
+    <!-- Inclusion du script JavaScript spécifique aux formateurs -->
+    <script src="{{ url_for('static', filename='prof.js') }}"></script>
+
+    <!-- Script pour gérer la déconnexion -->
+    <script>
+        document.getElementById("deconnexionBtn").addEventListener("click", function () {
+            // Supprimer la session
+            sessionStorage.removeItem('IdCompteEleve');
+            // Rediriger vers index.html
+            window.location.href = "/";
+        });
+    </script>
+</body>
+
+{% endblock %}
+</html>

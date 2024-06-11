@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mettre à jour un compte élève</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Mettre à jour un compte élève</h1>
+                <a href="/admin"><button class="btn-deconnexion">Retour</button></a>
+            </div>
+        </div>
+        <div class="form-container">
+            <h2>Choisissez un compte élève à mettre à jour :</h2>
+            <form action="{{ url_for('update_compte_eleve') }}" method="POST">
+                <label for="compte">Sélectionner le compte élève :</label>
+                <select id="compte" name="compte_id">
+                    {% for compte in comptes %}
+                        <option value="{{ compte['IdCompteEleve'] }}">{{ compte['Pseudo'] }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+                <input type="submit" value="Mettre à jour">
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

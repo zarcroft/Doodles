@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Voir les utilisateurs</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Liste des utilisateurs</h1>
+                <a href="/admin"><button class="btn-deconnexion">retour</button></a>
+
+            </div>
+        </div>
+        <ul class="utilisateurs-liste">
+            {% for user in users %}
+                <li class="utilisateur-item">{{ user['Pseudo'] }} ({{ user['role'] }})</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+{% endblock %}
+</html>

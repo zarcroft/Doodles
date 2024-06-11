@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Déclaration des métadonnées -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prendre rendez-vous</title>
+</head>
+
+<body>
+    <!-- Titre de la page -->
+    <h1>Prendre rendez-vous</h1>
+    
+    <!-- Formulaire pour prendre rendez-vous -->
+    <form action="{{ url_for('traiter_rendez_vous') }}" method="post">
+        <!-- Champ pour saisir le nom -->
+        <label for="nom">Nom:</label>
+        <input type="text" name="nom" required><br>
+
+        <!-- Champ pour saisir le prénom -->
+        <label for="prenom">Prénom:</label>
+        <input type="text" name="prenom" required><br>
+
+        <!-- Menu déroulant pour choisir une classe -->
+        <label for="classe">Choisir une classe:</label>
+        <select name="classe" required>
+            <!-- Boucle pour afficher chaque classe -->
+            {% for classe in classes %}
+                <option value="{{ classe['IDClasse'] }}">{{ classe['Classe'] }}</option>
+            {% endfor %}
+        </select><br>
+
+        <!-- Bouton de validation -->
+        <button type="submit">Valider</button>
+    </form>
+</body>
+
+</html>

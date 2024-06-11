@@ -1,0 +1,46 @@
+<!-- Déclaration du type de document et de la langue -->
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <!-- Déclaration de l'encodage des caractères -->
+    <meta charset='utf-8' />
+    <!-- Inclusion de la bibliothèque FullCalendar -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <!-- Inclusion de la feuille de style CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Début du script JavaScript -->
+    <script>
+        // Fonction exécutée lorsque le document est chargé
+        document.addEventListener('DOMContentLoaded', function() {
+            // Récupération de l'élément HTML avec l'id 'calendar'
+            var calendarEl = document.getElementById('calendar');
+            // Initialisation du calendrier avec FullCalendar
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                // Affichage initial du calendrier
+                initialView: 'dayGridMonth',
+                // Activation de la sélection des plages horaires
+                selectable: true,
+                // Gestion de l'événement de sélection d'une plage horaire
+                select: function(info) {
+                    // Manipulation lorsqu'une plage horaire est sélectionnée
+                    console.log('Plage horaire sélectionnée: ' + info.startStr + ' to ' + info.endStr);
+                }
+            });
+            // Affichage du calendrier
+            calendar.render();
+        });
+    </script>
+</head>
+<body>
+    <!-- Titre de la page -->
+    <h1>Gestion des Disponibilités</h1>
+
+    <!-- Affichage du pseudo -->
+    <div>
+        <p><strong>Pseudo:</strong> {{ pseudo }}</p>
+    </div>
+
+    <!-- Affichage du calendrier -->
+    <div id='calendar'></div>
+</body>
+</html>

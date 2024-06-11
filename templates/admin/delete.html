@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Supprimer un utilisateur</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Supprimer un utilisateur</h1>
+                <a href="/admin"><button class="btn-deconnexion">retour</button></a>
+
+            </div>
+        </div>
+        <nav>
+            <ul class="formateurs-list">
+                <li class="formateur-item"><a href="{{ url_for('delete_eleve') }}">Supprimer un élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('delete_formateur') }}">Supprimer un formateur</a></li>
+            </ul>
+        </nav>
+    </div>
+</body>
+{% endblock %}
+</html>

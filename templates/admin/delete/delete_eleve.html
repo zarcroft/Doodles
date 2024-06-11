@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un formateur</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Supprimer Formateur</h1>
+                <a href="/admin"><button class="btn-deconnexion">retour</button></a>
+
+            </div>
+        </div>
+        <nav>
+            <ul class="formateurs-list">
+                <li class="formateur-item"><a href="{{ url_for('delete_eleve') }}">Supprimer un élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('delete_formateur') }}">Supprimer un formateur</a></li>
+            </ul>
+        </nav>
+<div class="form-container">
+<form action="/delete_eleve" method="POST" >
+    <label for="eleve">Sélectionner l'élève :</label>
+    <select id="eleve" name="eleve_id" class="delete-select">
+        <option value="">Aucun</option> <!-- Option vide -->
+        {% for eleve in eleves %}
+        <option value="{{ eleve.Id }}">{{ eleve.Nom }} {{ eleve.Prenom }}</option>
+        {% endfor %}
+    </select><br><br>
+    <input type="submit" value="Supprimer">
+</form>
+</div>
+{% endblock %}
+
+</html>

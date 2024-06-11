@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Déclaration des métadonnées -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prise de rendez-vous</title>
+    <!-- Liaison vers la feuille de style -->
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+
+<body>
+<header>
+    <!-- Bandeau supérieur -->
+    <div class="bandeau-haut">
+        <!-- Conteneur du logo et du titre -->
+        <div class="logo-titre-container">
+            <!-- Logo avec lien vers la page d'accueil -->
+            <a href="/"><img src="/static/promeo.jpg" alt="Logo" class="logo"></a>
+            <!-- Titre -->
+            <h1 class="titre">PROMEO</h1>
+        </div>
+    </div>
+
+    <!-- Bandeau inférieur -->
+    <div class="bandeau-bas">
+        <!-- Boutons de navigation -->
+        <button id="btnConnexionEleve">Prendre Rendez-vous</button>
+        <button id="btnConnexionFormateurs">Connexion formateur</button>
+        <a href="/propos"><button>nos centres</button></a>
+        <button id="btnAdministration">administration</button>
+        <!-- Bouton de déconnexion si connecté -->
+        {% if session.logged_in %}
+        <button id="deconnexionBtn" class="btn-deconnexion" onclick="window.location.href='/logout'">Déconnexion</button>
+        {% endif %}
+    </div>
+
+    <!-- Formulaire de connexion pour les élèves -->
+    <div id="formulaireConnexionEleve" class="formulaire">
+        <h3>Se connecter (élève)</h3>
+        <form id="formConnexionEleve" action="{{ url_for('login_eleve') }}" method="post">
+            <input type="text" name="PseudoEleve" required placeholder="Pseudo"><br>
+            <input type="password" name="PasswordEleve" required placeholder="Mot de passe"><br>
+            <button type="submit">Se connecter</button>
+            <button class="fermer" type="button" onclick="fermerFormulaire('formulaireConnexionEleve')">X</button>
+            <div id="erreurIdentifiantEleve" class="erreur"></div>
+        </form>
+    </div>
+    
+    <!-- Formulaire de connexion pour les formateurs -->
+    <div id="formulaireFormateurs" class="formulaire">
+        <h3>Se connecter (formateur)</h3>
+        <form id="formFormateurs" action="{{ url_for('login_formateurs') }}" method="post">
+            <input type="text" name="Pseudo" required placeholder="Pseudo"><br>
+            <input type="password" name="Password" required placeholder="Mot de passe"><br>
+            <button type="submit">Se connecter</button>
+            <button class="fermer" type="button" onclick="fermerFormulaire('formulaireFormateurs')">X</button>
+            <div id="erreurIdentifiantFormateur" class="erreur"></div>
+        </form>
+    </div>
+</header>
+
+<!-- Chargement du script JavaScript -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<!-- Bloc pour le contenu spécifique de chaque page -->
+{% block content %}
+{% endblock %}
+</body>
+</html>

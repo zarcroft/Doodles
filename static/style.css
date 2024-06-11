@@ -1,0 +1,400 @@
+/* Style général du corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; /* Supprimer les marges par défaut */
+    padding: 0;
+}
+
+/* Bandeau en haut de la page */
+.bandeau-haut {
+    background-color: hwb(188 2% 4%);
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo à gauche et titre au centre */
+}
+
+/* Style du logo */
+.logo {
+    width: 150px; /* Ajuster selon la taille du logo */
+    margin-right: auto; /* Décale le logo complètement à gauche */
+}
+
+/* Style du titre */
+.titre {
+    text-align: center; /* Centrer le titre horizontalement */
+    flex-grow: 1; /* Occupe tout l'espace disponible pour forcer le centrage */
+}
+
+/* Conteneur pour le logo et le titre */
+.logo-titre-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* Bandeau en bas de la page */
+.bandeau-bas {
+    background-color: #f2f2f2;
+    padding: 8px;
+    text-align: center;
+    margin: 0; /* Supprimer les marges en haut et en bas */
+}
+
+/* Style des boutons dans le bandeau bas */
+.bandeau-bas button {
+    margin-right: 70px;
+    padding: 8px 25px; /* Augmenter la taille des boutons */
+    font-size: 16px; /* Augmenter la taille de la police */
+    transition: all 0.3s ease; /* Transition douce pour les interactions */
+    border: none; /* Supprimer la bordure */
+}
+
+/* Effet de survol pour les boutons */
+.bandeau-bas button:hover {
+    transform: scale(1.1); /* Agrandir le bouton au survol */
+    background-color: red; /* Changer la couleur de fond au survol */
+}
+
+/* Style de l'image principale */
+.image-principale {
+    margin-top: 0; /* Ajuster l'espace entre les bandeaux et l'image */
+    text-align: center;
+}
+
+/* Image principale */
+.image-principale img {
+    width: 100%; /* Image en pleine largeur */
+}
+
+/* Conteneur pour les colonnes */
+.colonnes {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+    flex-wrap: wrap; /* Permettre le retour à la ligne des colonnes */
+}
+
+/* Style des colonnes */
+.colonne {
+    width: calc(33.333% - 20px); /* Largeur de chaque colonne */
+    background-color: #fff; /* Fond blanc */
+    border: none; /* Pas de bordure */
+    box-sizing: border-box; /* Inclure la bordure dans le calcul de la taille */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer les éléments horizontalement */
+    text-align: center; /* Centrer le texte */
+    margin-bottom: 20px; /* Espace entre les colonnes */
+}
+
+/* Style des images dans les colonnes */
+.colonne img {
+    width: calc(100% - 0px); /* Image pleine largeur */
+    height: auto; /* Ajustement automatique de la hauteur */
+    margin-bottom: 10px; /* Espace sous l'image */
+}
+
+/* Zone de texte dans les colonnes */
+.zone-texte {
+    flex-grow: 1; /* Occuper tout l'espace restant */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrer verticalement */
+    padding: 10px;
+}
+
+/* Paragraphe dans la zone de texte */
+.zone-texte p {
+    margin: 0; /* Supprimer les marges par défaut */
+}
+
+/* Formulaire de connexion */
+.formulaire {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 300px;
+}
+
+/* Titre du formulaire de connexion */
+.formulaire h3 {
+    margin-top: 0;
+    color: #003366; /* Bleu foncé */
+}
+
+/* Champs de texte et mot de passe du formulaire */
+.formulaire input[type="text"],
+.formulaire input[type="password"] {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Bouton du formulaire */
+.formulaire button {
+    width: calc(100% - 10px);
+    padding: 10px;
+    background-color: #003366; /* Bleu */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+/* Effet de survol pour le bouton du formulaire */
+.formulaire button:hover {
+    background-color: #002244; /* Bleu foncé */
+}
+
+/* Bouton de fermeture du formulaire */
+.formulaire .fermer {
+    background-color: #fd1f44; /* Rouge */
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 1%;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* Effet de survol pour le bouton de fermeture */
+.formulaire .fermer:hover {
+    background-color: #c71536; /* Rouge foncé */
+}
+
+/* Style des messages d'erreur */
+.erreur {
+    color: red;
+}
+
+/* Classe pour rendre le formulaire visible */
+.formulaire-visible {
+    display: block !important;
+}
+
+/* Variables CSS pour les couleurs */
+:root {
+    --blue-color: #5EB2F8;
+    --red-color: #F54F35;
+    --white-color: #FFFFFF;
+}
+
+/* Liste des disponibilités */
+#listeDisponibilites {
+    margin-top: 20px;
+}
+
+/* Titre de la liste des disponibilités */
+#listeDisponibilites h3 {
+    color: var(--blue-color);
+}
+
+/* Style de la liste des disponibilités */
+#disponibilites {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Élément de la liste des disponibilités */
+#disponibilites li {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Bouton des éléments de la liste des disponibilités */
+#disponibilites li button {
+    background-color: var(--red-color);
+    color: var(--white-color);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Effet de survol pour les boutons des disponibilités */
+#disponibilites li button:hover {
+    background-color: blue;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white; /* Fond blanc */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 50px;
+    position: relative;
+}
+
+/* Bouton de déconnexion */
+.btn-deconnexion {
+    background-color: #fd1f44; /* Rouge */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Effet de survol pour le bouton de déconnexion */
+.btn-deconnexion:hover {
+    background-color: #c71536; /* Rouge foncé */
+}
+
+/* Liste des formateurs */
+.formateurs-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Élément de la liste des formateurs */
+.formateur-item {
+    background-color: #e6f2ff; /* Bleu clair */
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Liens des formateurs */
+.formateur-item a {
+    text-decoration: none;
+    color: #003366; /* Bleu foncé */
+    font-weight: bold;
+}
+
+/* Effet de survol pour les liens des formateurs */
+.formateur-item a:hover {
+    color: #002244; /* Bleu encore plus foncé */
+}
+
+/* Style pour les éléments de formulaire */
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Bouton de soumission du formulaire */
+input[type="submit"] {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Effet de survol pour le bouton de soumission */
+input[type="submit"]:hover {
+    background-color: #ff3333;
+}
+
+/* Nouveaux styles pour le menu déroulant des formateurs */
+select#formateur {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+/* Style des options du menu déroulant */
+select#formateur option {
+    padding: 10px;
+    color: #000;
+}
+
+/* Messages d'erreur et de succès */
+.message {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+/* Style des formulaires */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels des formulaires */
+label {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Boîte de dialogue */
+.dialog-content {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.dialog-content label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.dialog-content input[type="text"],
+.dialog-content textarea,
+.dialog-content select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.dialog-content button {
+    padding: 10px 20px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.dialog-content button:hover {
+    background-color: #002244;
+}
+
+/* Style spécifique pour les événements de réservation */
+.reservation-event {
+    background-color: #7FFF00; /* Vert */
+    border-color: #7FFF00;
+    color: #000;
+}

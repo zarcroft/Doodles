@@ -1,0 +1,44 @@
+{% extends 'base.html' %}  <!-- Extension du modèle de base -->
+
+<!DOCTYPE html>
+<html lang="en">  <!-- Balise html avec la langue anglaise -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formateurs par Classe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">  <!-- Inclusion du fichier CSS -->
+</head>
+
+{% block content %}  <!-- Bloc de contenu qui sera injecté dans base.html -->
+<body>
+    <div class="container">
+        <!-- En-tête de la page -->
+        <header>
+            <h1>Formateurs par Classe</h1>
+        </header>
+
+        <!-- Liste des formateurs -->
+        <ul class="formateurs-list">
+            {% for formateur in formateurs %}
+                <li class="formateur-item">
+                    <!-- Lien vers le planning du formateur avec son ID -->
+                    <a href="{{ url_for('planning_prof', IdFormateur=formateur['IdFormateur']) }}" data-idformateur="{{ formateur['IdFormateur'] }}">
+                        {{ formateur['Nom'] }} {{ formateur['Prenom'] }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- Script pour gérer la déconnexion -->
+    <script>
+        document.getElementById("deconnexionBtn").addEventListener("click", function () {
+            // Supprimer la session
+            sessionStorage.removeItem('IdCompteEleve');
+            // Rediriger vers index.html
+            window.location.href = "/";
+        });
+    </script>
+</body>
+{% endblock %}  <!-- Fin du bloc de contenu -->
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mise à jour des formateurs</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Mise à jour des formateurs</h1>
+                <a href="/admin"><button class="btn-deconnexion">Retour</button></a>
+            </div>
+        </div>
+        <div class="form-container">
+            <h2>Choisissez un formateur à mettre à jour :</h2>
+            <form action="{{ url_for('update_formateur') }}" method="POST">
+                <label for="formateur">Sélectionner le formateur :</label>
+                <select id="formateur" name="formateur_id">
+                    {% for formateur in formateurs %}
+                        <option value="{{ formateur['IdFormateur'] }}">{{ formateur['Nom'] }} {{ formateur['Prenom'] }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
+                <input type="submit" value="Mettre à jour">
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
+</html>

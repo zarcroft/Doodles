@@ -1,0 +1,35 @@
+{% extends 'base.html' %}  <!-- Extension du modèle de base -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    <!-- Inclusion du fichier CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% block content %}  <!-- Bloc de contenu qui sera injecté dans base.html -->
+    <div class="container">
+        <!-- Section du bandeau en haut -->
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <!-- Titre de la page -->
+                <h1 class="titre">Administration</h1>
+                <!-- Bouton de déconnexion -->
+                <a href="/logout"><button class="btn-deconnexion">Déconnexion</button></a>
+            </div>
+        </div>
+        <!-- Menu de navigation -->
+        <nav>
+            <ul class="formateurs-list">
+                <!-- Liens vers les différentes actions CRUD -->
+                <li class="formateur-item"><a href="{{ url_for('create') }}">Créer</a></li>
+                <li class="formateur-item"><a href="{{ url_for('read') }}">Lire</a></li>
+                <li class="formateur-item"><a href="{{ url_for('update') }}">Mettre à jour</a></li>
+                <li class="formateur-item"><a href="{{ url_for('delete') }}">Supprimer</a></li>
+            </ul>
+        </nav>
+    </div>
+    {% endblock %}  <!-- Fin du bloc de contenu -->
+</body>
+</html>

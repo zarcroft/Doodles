@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un élève</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Ajouter un élève</h1>
+                <a href="/admin"><button class="btn-deconnexion">retour</button></a>
+            </div>
+        </div>
+        <nav>
+            <ul class="formateurs-list">
+                <li class="formateur-item"><a href="{{ url_for('create_eleve') }}">Créer un élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_formateur') }}">Créer un formateur</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_compte_eleve') }}">Créer un compte élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_compte_formateur') }}">Créer un compte formateur</a></li>
+            </ul>
+        </nav>
+        <div class="form-container">
+            <form action="/ajouter-eleve" method="POST">
+                <label for="nom">Nom:</label>
+                <input type="text" id="nom" name="nom" required>
+                
+                <label for="prenom">Prénom:</label>
+                <input type="text" id="prenom" name="prenom" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="telephone">Téléphone:</label>
+                <input type="tel" id="telephone" name="telephone" pattern="[0-9]{10}" required>
+                
+                <label for="classe">Classe:</label>
+                <select id="classe" name="classe" required>
+                    <option value="" disabled selected>Choisissez une classe</option>
+                    {% for classe in classes %}
+                        <option value="{{ classe['IDClasse'] }}">{{ classe['Classe'] }}</option>
+                    {% endfor %}
+                </select>
+                
+                <input type="submit" value="Ajouter">
+            </form>
+
+            <!-- Messages flash -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+</html>

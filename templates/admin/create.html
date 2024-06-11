@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Page de création</h1>
+                <a href="/admin"><button class="btn-deconnexion">retour</button></a>
+
+            </div>
+        </div>
+        <nav>
+            <ul class="formateurs-list">
+                <li class="formateur-item"><a href="{{ url_for('create_eleve') }}">Créer un élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_formateur') }}">Créer un formateur</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_compte_eleve') }}">Créer un compte élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_compte_formateur') }}">Créer un compte formateur</a></li>
+            </ul>
+        </nav>
+    </div>
+{% endblock %}

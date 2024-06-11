@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Création</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+</head>
+{% extends 'base.html' %}
+{% block content %}
+<body>
+    <div class="container">
+        <div class="bandeau-haut">
+            <div class="logo-titre-container">
+                <h1 class="titre">Formulaire Compte Élève</h1>
+                <a href="/admin"><button class="btn-deconnexion">retour</button></a>
+            </div>
+        </div>
+        <nav>
+            <ul class="formateurs-list">
+                <li class="formateur-item"><a href="{{ url_for('create_eleve') }}">Créer un élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_formateur') }}">Créer un formateur</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_compte_eleve') }}">Créer un compte élève</a></li>
+                <li class="formateur-item"><a href="{{ url_for('create_compte_formateur') }}">Créer un compte formateur</a></li>
+            </ul>
+        </nav>
+        <div class="form-container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('create_compte_eleve') }}" method="POST">
+                <label for="pseudo">Pseudo :</label>
+                <input type="text" id="pseudo" name="pseudo" required>
+
+                <label for="mot_de_passe">Mot de passe :</label>
+                <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+
+                <label for="id_eleve">ID de l'élève :</label>
+                <select id="id_eleve" name="id_eleve" required>
+                    {% for eleve in eleves %}
+                        <option value="{{ eleve.IdEleve }}">{{ eleve.Nom }} {{ eleve.Prenom }}</option>
+                    {% endfor %}
+                </select>
+
+                <input type="submit" value="Créer le compte">
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+</html>
