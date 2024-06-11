@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "doodle"
+version = "0.1.0"
+description = ""
+authors = ["flo"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+flask = "^3.0.1"
+jinja2 = "^3.1.3"
+pony = "^0.7.17"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
