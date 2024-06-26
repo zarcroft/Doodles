@@ -10,6 +10,7 @@ from flask_mail import Mail, Message
 from flask import flash
 
 
+
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'votre_cle_secrete'
 app.config['SESSION_TYPE'] = 'filesystem'
@@ -50,8 +51,7 @@ def get_formateurs_par_classe(idclasse):
 
 @app.route('/')
 def index():
-    classe = get_classe()
-    return render_template('index.html', classe=classe)
+    return render_template('index.html')
 
 # Route pour la connexion des formateurs
 @app.route('/login_formateurs', methods=['POST'])
