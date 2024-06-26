@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 11 juin 2024 à 20:57
+-- Généré le : mer. 26 juin 2024 à 20:37
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -20,20 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `doodle`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `centre`
---
-
-CREATE TABLE `centre` (
-  `IDCentre` int(11) NOT NULL,
-  `Centre` varchar(50) DEFAULT NULL,
-  `Ville` varchar(50) DEFAULT NULL,
-  `Adresse` varchar(50) DEFAULT NULL,
-  `CodePostale` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -72,7 +58,8 @@ CREATE TABLE `compteeleve` (
 --
 
 INSERT INTO `compteeleve` (`IdCompteEleve`, `Pseudo`, `MotDePasse`, `IdEleve`) VALUES
-(1, 'flob', 'abcd', 1);
+(1, 'flob', 'abcd', 1),
+(2, 'will', 'will', 2);
 
 -- --------------------------------------------------------
 
@@ -93,8 +80,7 @@ CREATE TABLE `compteformateur` (
 
 INSERT INTO `compteformateur` (`IDCompteFormateur`, `Pseudo`, `MotDePasse`, `IdFormateur`) VALUES
 (1, 'bidule-a', 'abcd', 1),
-(2, 'machin-b', 'abcd', 2),
-(4, 'eazy', 'AOUAI', 4);
+(2, 'machin-b', 'abcd', 2);
 
 -- --------------------------------------------------------
 
@@ -118,10 +104,11 @@ INSERT INTO `disponibilite` (`IdDisponibilite`, `DateDebut`, `DateFin`, `Titres`
 (10, '2024-04-02 09:00:00', '2024-04-04 13:30:00', 'test', 1),
 (11, '2024-04-15 08:00:00', '2024-04-15 18:00:00', 'test', 1),
 (12, '2024-04-29 08:00:00', '2024-04-29 13:30:00', 'RDV', 1),
+(13, '2024-05-01 08:00:00', '2024-05-01 10:30:00', 'oui', 1),
+(14, '2024-04-30 11:30:00', '2024-04-30 16:00:00', 'trdt', 1),
 (15, '2024-05-02 08:00:00', '2024-05-02 13:30:00', 'test', 1),
 (16, '2024-05-02 14:30:00', '2024-05-02 17:30:00', 'oui', 1),
-(17, '2024-04-29 08:30:00', '2024-04-29 12:00:00', 'sisi', 2),
-(18, '2024-06-12 09:00:00', '2024-06-12 12:00:00', 'test', 1);
+(17, '2024-04-29 08:30:00', '2024-04-29 12:00:00', 'sisi', 2);
 
 -- --------------------------------------------------------
 
@@ -143,7 +130,9 @@ CREATE TABLE `eleve` (
 --
 
 INSERT INTO `eleve` (`IdEleve`, `Nom`, `Prenom`, `Email`, `Telephone`, `IDClasse`) VALUES
-(1, 'berhault', 'florian', 'flo@flob.com', 645256599, 1);
+(1, 'berhault', 'florian', 'flo@flob.com', 645256599, 1),
+(2, 'will', 'bero', 'bero@bero.com', 0, 1),
+(3, 'berhault', 'florian', 'florian.berhault07@gmail.com', 643591524, 1);
 
 -- --------------------------------------------------------
 
@@ -164,9 +153,8 @@ CREATE TABLE `formateur` (
 --
 
 INSERT INTO `formateur` (`IdFormateur`, `Nom`, `Prenom`, `Email`, `Telephone`) VALUES
-(1, 'bidule', 'aaa', 'florian.berhault07@gmail.com', 245987121),
-(2, 'machin', 'bbb', 'vincent.herrera931@gmail.com', 658788832),
-(4, 'test', 'test', 'testte@test', 606060606);
+(1, 'bidule', 'aaa', 'florian.berhault07@gmail.com', 245987120),
+(2, 'machin', 'bbb', 'vincent.herrera931@gmail.com', 658788832);
 
 -- --------------------------------------------------------
 
@@ -208,27 +196,19 @@ CREATE TABLE `reservation` (
 --
 
 INSERT INTO `reservation` (`IdReservation`, `HeureDebut`, `HeureFin`, `Titres`, `Commentaires`, `IdCompteEleve`, `IdFormateur`) VALUES
-(58, '2024-05-01 11:30:00', '2024-05-01 12:00:00', 'test', 'test', 1, 1),
-(60, '2024-05-02 10:00:00', '2024-05-02 10:30:00', '', 'sisi', 1, 1),
-(61, '2024-05-01 10:00:00', '2024-05-01 10:30:00', 'test', 'te', 1, 1),
-(62, '2024-05-01 09:00:00', '2024-05-01 09:30:00', '', '', 1, 1),
-(63, '2024-05-02 09:00:00', '2024-05-02 09:30:00', '', '', 1, 1),
-(64, '2024-05-02 09:30:00', '2024-05-02 10:00:00', '', '', 1, 1),
-(65, '2024-05-01 14:00:00', '2024-05-01 14:30:00', '', '', 1, 1),
-(66, '2024-05-01 13:30:00', '2024-05-01 14:00:00', '', '', 1, 1),
-(67, '2024-05-01 12:30:00', '2024-05-01 13:00:00', '', '', 1, 1),
-(68, '2024-05-01 12:00:00', '2024-05-01 12:30:00', '', '', 1, 1),
-(70, '2024-06-12 10:30:00', '2024-06-12 11:00:00', 'berhault florian', 'test', 1, 1);
+(73, '2024-05-03 11:00:00', '2024-05-03 11:30:00', 'will bero', 'cfpfp', 2, 1),
+(74, '2024-05-03 15:00:00', '2024-05-03 15:30:00', 'will bero', 'okdokdod', 2, 1),
+(75, '2024-04-30 12:00:00', '2024-04-30 12:30:00', 'berhault florian', 'kfkorfrfojk', 1, 1),
+(76, '2024-04-29 09:30:00', '2024-04-29 10:00:00', 'berhault florian', 'sisi la midff', 1, 2),
+(77, '2024-04-29 10:00:00', '2024-04-29 10:30:00', 'berhault florian', 'ojedokekojed', 1, 2),
+(78, '2024-04-29 10:30:00', '2024-04-29 11:00:00', 'berhault florian', ',zrkoezrfjoez', 1, 2),
+(79, '2024-04-29 09:00:00', '2024-04-29 09:30:00', 'berhault florian', 'zegrlpkzrgkp', 1, 2),
+(80, '2024-04-29 11:00:00', '2024-04-29 11:30:00', 'berhault florian', 'lpeplelp', 1, 2),
+(81, '2024-04-30 13:00:00', '2024-04-30 14:00:00', 'berhault florian', 'je me suis fait viré', 1, 1);
 
 --
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `centre`
---
-ALTER TABLE `centre`
-  ADD PRIMARY KEY (`IDCentre`);
 
 --
 -- Index pour la table `classe`
@@ -241,14 +221,14 @@ ALTER TABLE `classe`
 --
 ALTER TABLE `compteeleve`
   ADD PRIMARY KEY (`IdCompteEleve`),
-  ADD KEY `IdEleve` (`IdEleve`);
+  ADD UNIQUE KEY `IdEleve` (`IdEleve`);
 
 --
 -- Index pour la table `compteformateur`
 --
 ALTER TABLE `compteformateur`
   ADD PRIMARY KEY (`IDCompteFormateur`),
-  ADD KEY `IdFormateur` (`IdFormateur`);
+  ADD UNIQUE KEY `IdFormateur` (`IdFormateur`);
 
 --
 -- Index pour la table `disponibilite`
@@ -275,7 +255,7 @@ ALTER TABLE `formateur`
 --
 ALTER TABLE `formation`
   ADD PRIMARY KEY (`IDClasse`,`IdFormateur`),
-  ADD KEY `formation_ibfk_2` (`IdFormateur`);
+  ADD KEY `IdFormateur` (`IdFormateur`);
 
 --
 -- Index pour la table `reservation`
@@ -290,12 +270,6 @@ ALTER TABLE `reservation`
 --
 
 --
--- AUTO_INCREMENT pour la table `centre`
---
-ALTER TABLE `centre`
-  MODIFY `IDCentre` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT pour la table `classe`
 --
 ALTER TABLE `classe`
@@ -305,19 +279,19 @@ ALTER TABLE `classe`
 -- AUTO_INCREMENT pour la table `compteeleve`
 --
 ALTER TABLE `compteeleve`
-  MODIFY `IdCompteEleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `IdCompteEleve` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `compteformateur`
 --
 ALTER TABLE `compteformateur`
-  MODIFY `IDCompteFormateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDCompteFormateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
-  MODIFY `IdDisponibilite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `IdDisponibilite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT pour la table `eleve`
@@ -335,7 +309,7 @@ ALTER TABLE `formateur`
 -- AUTO_INCREMENT pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  MODIFY `IdReservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `IdReservation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- Contraintes pour les tables déchargées
@@ -345,39 +319,39 @@ ALTER TABLE `reservation`
 -- Contraintes pour la table `compteeleve`
 --
 ALTER TABLE `compteeleve`
-  ADD CONSTRAINT `compteeleve_ibfk_1` FOREIGN KEY (`IdEleve`) REFERENCES `eleve` (`IdEleve`) ON DELETE CASCADE;
+  ADD CONSTRAINT `compteeleve_ibfk_1` FOREIGN KEY (`IdEleve`) REFERENCES `eleve` (`IdEleve`);
 
 --
 -- Contraintes pour la table `compteformateur`
 --
 ALTER TABLE `compteformateur`
-  ADD CONSTRAINT `compteformateur_ibfk_1` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`) ON DELETE CASCADE;
+  ADD CONSTRAINT `compteformateur_ibfk_1` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`);
 
 --
 -- Contraintes pour la table `disponibilite`
 --
 ALTER TABLE `disponibilite`
-  ADD CONSTRAINT `disponibilite_ibfk_1` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`) ON DELETE CASCADE;
+  ADD CONSTRAINT `disponibilite_ibfk_1` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`);
 
 --
 -- Contraintes pour la table `eleve`
 --
 ALTER TABLE `eleve`
-  ADD CONSTRAINT `eleve_ibfk_1` FOREIGN KEY (`IDClasse`) REFERENCES `classe` (`IDClasse`) ON DELETE CASCADE;
+  ADD CONSTRAINT `eleve_ibfk_1` FOREIGN KEY (`IDClasse`) REFERENCES `classe` (`IDClasse`);
 
 --
 -- Contraintes pour la table `formation`
 --
 ALTER TABLE `formation`
-  ADD CONSTRAINT `formation_ibfk_1` FOREIGN KEY (`IDClasse`) REFERENCES `classe` (`IDClasse`) ON DELETE CASCADE,
-  ADD CONSTRAINT `formation_ibfk_2` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`) ON DELETE CASCADE;
+  ADD CONSTRAINT `formation_ibfk_1` FOREIGN KEY (`IDClasse`) REFERENCES `classe` (`IDClasse`),
+  ADD CONSTRAINT `formation_ibfk_2` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`);
 
 --
 -- Contraintes pour la table `reservation`
 --
 ALTER TABLE `reservation`
-  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`IdCompteEleve`) REFERENCES `compteeleve` (`IdCompteEleve`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`) ON DELETE CASCADE;
+  ADD CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`IdCompteEleve`) REFERENCES `compteeleve` (`IdCompteEleve`),
+  ADD CONSTRAINT `reservation_ibfk_2` FOREIGN KEY (`IdFormateur`) REFERENCES `formateur` (`IdFormateur`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
