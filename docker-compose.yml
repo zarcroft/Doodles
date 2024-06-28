@@ -1,0 +1,43 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: doodle
+      MYSQL_USER: doodle
+      MYSQL_PASSWORD: doodle
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    ports:
+      - "3306:3306"
+    networks:
+      - doodle-network
+
+  web:
+    build:
+      context: .
+      dockerfile: dockerfile
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - doodle-network
+
+volumes:
+  db_data:
+
+networks:
+  doodle-network:
+    driver: bridge
